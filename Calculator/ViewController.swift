@@ -14,13 +14,15 @@ class ViewController: UIViewController
     
     var userIsInTheMiddleOfTypingANumber = false
     
+    //instance variable
     var brain = CalculatorBrain()
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         //add float capability to ui
+        //display.text!.rangeOfString(".") returns nil if the display does not contain a .
         if digit == "." && display.text!.rangeOfString(".") != nil {
-            return;
+            return
         }
         if userIsInTheMiddleOfTypingANumber{
             display.text = display.text! + digit
@@ -29,8 +31,9 @@ class ViewController: UIViewController
             userIsInTheMiddleOfTypingANumber = true
         }
     }
-    
+    //user presses an operation button
     @IBAction func operate(sender: UIButton) {
+        //if user hit the operation button after typing a number, enter that number first
         if userIsInTheMiddleOfTypingANumber {
             enter()
         }
@@ -44,8 +47,12 @@ class ViewController: UIViewController
         }
     }
     
+    
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
+        //push operand onto the stack
+        //update display
+        //every time push operand, up display value with evaluation
         if let result = brain.pushOperand(displayValue) {
             displayValue = result
         } else {
