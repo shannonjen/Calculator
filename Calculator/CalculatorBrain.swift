@@ -29,6 +29,7 @@ class CalculatorBrain
         //add computed property to enum
         //read only (get)
         //returns op into a string
+        //description is a string method
         var description: String {
             get {
                 //switch on self
@@ -57,6 +58,7 @@ class CalculatorBrain
     var π = M_PI
     //Dictionary filled when class is initialized
     init(){
+       
         func learnOp(op: Op) {
             knownOps[op.description] = op
         }
@@ -66,7 +68,7 @@ class CalculatorBrain
         learnOp(Op.BinaryOperation("−") { $1 - $0 })
         learnOp(Op.UnaryOperation("√", sqrt))
         learnOp(Op.UnaryOperation("sin", sin))
-        learnOp(Op.UnaryOperation("sin", sin))
+        learnOp(Op.UnaryOperation("cos", cos))
         learnOp(Op.Constant("π",M_PI))
     }
     
@@ -108,7 +110,9 @@ class CalculatorBrain
     //calls evaluate on the whole array opStack and returns a double 
     func evaluate() -> Double? {
         let (result, remainder) = evaluate(opStack)
+        
         println("\(opStack) = \(result) with \(remainder) left over")
+        let printStack = "\(opStack)"
         return result
     }
     
@@ -120,6 +124,7 @@ class CalculatorBrain
         return evaluate()
     }
     
+    
     //called when user presses an operation button
     //the string symbol of the button is passed in
     func performOperation(symbol: String) -> Double? {
@@ -128,5 +133,9 @@ class CalculatorBrain
             opStack.append(operation)
         }
         return evaluate()
+    }
+    
+    func resetStack(){
+        opStack = []
     }
 }

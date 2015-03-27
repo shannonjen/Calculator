@@ -12,10 +12,21 @@ class ViewController: UIViewController
 {
     @IBOutlet weak var display: UILabel!
     
+    @IBOutlet weak var historyDisplay: UILabel!
+    
     var userIsInTheMiddleOfTypingANumber = false
+    
+    
     
     //instance variable
     var brain = CalculatorBrain()
+    
+    @IBAction func clearAll() {
+        userIsInTheMiddleOfTypingANumber = false
+        displayValue = 0
+        historyDisplay.text = ""
+        brain.resetStack()
+    }
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -38,11 +49,13 @@ class ViewController: UIViewController
             enter()
         }
         if let operation = sender.currentTitle {
+             historyDisplay.text = historyDisplay.text! + sender.currentTitle! + ","
             if let result = brain.performOperation(operation){
                 displayValue = result
+               
             } else {
                 //need to make displayValue an optional so this is nil
-                displayValue = 0
+                displayValue = nil
             }
         }
     }
@@ -50,23 +63,26 @@ class ViewController: UIViewController
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
+        historyDisplay.text = historyDisplay.text! + display.text! + ","
         //push operand onto the stack
         //update display
         //every time push operand, up display value with evaluation
-        if let result = brain.pushOperand(displayValue) {
+        if let result = brain.pushOperand(displayValue!) {
             displayValue = result
         } else {
             //need to make displayValue an optional so this is nil
-            displayValue = 0
+            displayValue = nil
         }
     }
     
-    var displayValue: Double {
+    var displayValue: Double? {
         get {
             return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
             
         } set {
-            display.text = "\(newValue)"
+            if newValue != nil{
+                display.text = "\(newValue!)"
+            }
         }
     }
 }

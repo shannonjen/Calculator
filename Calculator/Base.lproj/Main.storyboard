@@ -17,12 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2H-10-Zm7">
-                                <rect key="frame" x="16" y="73" width="568" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3D-oi-jrK">
                                 <rect key="frame" x="24" y="120" width="104" height="112"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -223,6 +217,12 @@
                                     <action selector="appendDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3mb-w1-gBO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2H-10-Zm7">
+                                <rect key="frame" x="16" y="73" width="568" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-yR-SeU">
                                 <rect key="frame" x="24" y="28" width="560" height="42"/>
                                 <constraints>
@@ -232,6 +232,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m37-iR-uvw">
+                                <rect key="frame" x="517" y="114" width="30" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="C">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearAll" destination="BYZ-38-t0r" eventType="touchUpInside" id="ItS-c8-maB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -295,6 +305,7 @@
                             <constraint firstItem="TfO-lS-2nX" firstAttribute="top" secondItem="5CM-GL-W2d" secondAttribute="bottom" constant="8" id="aaf-Nb-Zfs"/>
                             <constraint firstItem="Asn-nG-x7i" firstAttribute="width" secondItem="EDC-Ln-ssg" secondAttribute="width" id="byh-Fx-hwo"/>
                             <constraint firstItem="Asn-nG-x7i" firstAttribute="height" secondItem="SEL-dh-6nk" secondAttribute="height" id="c2t-YT-fyX"/>
+                            <constraint firstItem="m37-iR-uvw" firstAttribute="top" secondItem="T2H-10-Zm7" secondAttribute="bottom" constant="2" id="cDj-9N-KRm"/>
                             <constraint firstItem="Asn-nG-x7i" firstAttribute="width" secondItem="xpX-Jm-kdm" secondAttribute="width" id="cSe-RH-YRW"/>
                             <constraint firstItem="Asn-nG-x7i" firstAttribute="width" secondItem="UfH-Xe-dVx" secondAttribute="width" id="dHP-5r-W94"/>
                             <constraint firstItem="EDC-Ln-ssg" firstAttribute="top" secondItem="T2H-10-Zm7" secondAttribute="bottom" constant="8" id="dcQ-Ga-wvq"/>
@@ -328,10 +339,12 @@
                             <constraint firstItem="cpQ-1e-gOf" firstAttribute="top" secondItem="gsK-fm-qQr" secondAttribute="bottom" constant="8" id="wUy-BP-VVV"/>
                             <constraint firstItem="gsK-fm-qQr" firstAttribute="leading" secondItem="IRi-0B-NA1" secondAttribute="trailing" constant="8" id="xIy-We-0Fq"/>
                             <constraint firstItem="EDC-Ln-ssg" firstAttribute="leading" secondItem="D0d-3r-Uio" secondAttribute="trailing" constant="8" id="xPd-b1-Aid"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m37-iR-uvw" secondAttribute="trailing" constant="37" id="yCW-zK-jKh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="display" destination="T2H-10-Zm7" id="VDG-It-sLd"/>
+                        <outlet property="historyDisplay" destination="ZXY-yR-SeU" id="CVY-Mh-2rD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
