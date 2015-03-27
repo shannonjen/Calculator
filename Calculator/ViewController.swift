@@ -23,7 +23,7 @@ class ViewController: UIViewController
     
     @IBAction func clearAll() {
         userIsInTheMiddleOfTypingANumber = false
-        displayValue = 0
+        display.text = "0"
         historyDisplay.text = ""
         brain.resetStack()
     }
