@@ -23,8 +23,9 @@ class ViewController: UIViewController
     
     @IBAction func clearAll() {
         userIsInTheMiddleOfTypingANumber = false
-        display.text = "0"
-        historyDisplay.text = ""
+        displayValue = nil
+        //display.text = "0"
+        historyDisplay.text = " "
         brain.resetStack()
     }
     
@@ -80,8 +81,12 @@ class ViewController: UIViewController
             return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
             
         } set {
+            //newValue is default parameter
             if newValue != nil{
                 display.text = "\(newValue!)"
+            }
+            else{
+                display.text = "0"
             }
         }
     }

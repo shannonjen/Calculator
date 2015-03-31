@@ -26,6 +26,8 @@ class CalculatorBrain
       
         case Constant(String, Double)
         
+        case Variable(String)
+        
         //add computed property to enum
         //read only (get)
         //returns op into a string
@@ -42,6 +44,8 @@ class CalculatorBrain
                     return symbol
                 case .Constant(let symbol, _):
                     return symbol
+                case .Variable(let symbol)
+                    return symbol
                 }
             }
             
@@ -54,6 +58,8 @@ class CalculatorBrain
     //Create an empty Dictionary
     //this is used in performOperation function, which is called in viewcontroller operate function, which is called when the user presses one of the operation buttons
     private var knownOps = [String: Op]()
+    
+    private var variables = [String: Double]()
     
     var π = M_PI
     //Dictionary filled when class is initialized
@@ -101,6 +107,8 @@ class CalculatorBrain
                             return (operation(operand1, operand2), op2Evaluation.remainingOps)
                         }
                     }
+            case .Variable(let symbol):
+                return (nil, remainingOps)
             }
         }
         return (nil, ops)
@@ -125,6 +133,12 @@ class CalculatorBrain
     }
     
     
+    func pushOperand(symbol: String) -> Double? {
+        opStack.append(Op.Variable(symbol))
+        return evaluate()
+        
+    }
+    
     //called when user presses an operation button
     //the string symbol of the button is passed in
     func performOperation(symbol: String) -> Double? {
@@ -134,6 +148,7 @@ class CalculatorBrain
         }
         return evaluate()
     }
+  
     
     func resetStack(){
         opStack = []
