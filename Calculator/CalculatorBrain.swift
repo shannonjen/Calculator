@@ -107,8 +107,10 @@ class CalculatorBrain
                             return (operation(operand1, operand2), op2Evaluation.remainingOps)
                         }
                     }
-            case .Variable(let symbol):
-                return (nil, remainingOps)
+                case .Variable(let symbol):
+                    if let variableValue = variables[symbol] {
+                        return (variableValue, remainingOps)
+                }
             }
         }
         return (nil, ops)
