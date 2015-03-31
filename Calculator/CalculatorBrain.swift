@@ -44,7 +44,7 @@ class CalculatorBrain
                     return symbol
                 case .Constant(let symbol, _):
                     return symbol
-                case .Variable(let symbol)
+                case .Variable(let symbol):
                     return symbol
                 }
             }
